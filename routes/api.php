@@ -3,6 +3,10 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BorrowController;
+
 // Các routes không cần login (Public)
 Route::post('/auth/register', [AuthController::class, 'register']); // [cite: 85]
 Route::post('/auth/login', [AuthController::class, 'login']); // [cite: 117]
@@ -13,7 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-use App\Http\Controllers\BookController;
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
     
@@ -43,7 +47,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::delete('/books/{id}', [BookController::class, 'destroy']); // Xóa sách
 });
 
-use App\Http\Controllers\BorrowController;
+
 
 Route::middleware('auth:sanctum')->group(function () {
     // API Mượn sách
